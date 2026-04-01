@@ -1,0 +1,53 @@
+{
+  "fixtures": [
+    {
+      "id": "mcp-runtime-workflow",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Use MCP tools and resources' into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Use whatever MCP tools/resources the environment already exposes"],
+      "notes": "Runtime use stays separate from admin and inbound behavior."
+    },
+    {
+      "id": "mcp-runtime-boundary",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Use MCP tools and resources' when the user expects inbound notification behavior too.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["inbound notification control"],
+      "notes": "Workflow row should now mention inbound-control mismatch explicitly."
+    },
+    {
+      "id": "mcp-command-split",
+      "prompt": "Use $claude-code-for-codex to map /mcp into Codex and keep runtime use separate from admin config.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin or usage workflow"],
+      "notes": "Slash command still resolves through the existing /mcp row."
+    },
+    {
+      "id": "mcp-list-cli",
+      "prompt": "Use $claude-code-for-codex to map claude mcp list into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "List remains an admin/config path, not runtime use."
+    },
+    {
+      "id": "mcp-get-cli",
+      "prompt": "Use $claude-code-for-codex to map claude mcp get into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "Inspect-one-server stays in the admin plane."
+    },
+    {
+      "id": "mcp-add-cli",
+      "prompt": "Use $claude-code-for-codex to map claude mcp add into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "Add remains the hardest admin case."
+    },
+    {
+      "id": "mcp-channel-slash",
+      "prompt": "Use $claude-code-for-codex to map /mcp when the user expects server-pushed channel notifications.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin or usage workflow"],
+      "notes": "The mechanism layer explains why inbound control is still separate even though the slash row is shared."
+    }
+  ]
+}

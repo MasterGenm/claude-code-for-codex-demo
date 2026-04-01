@@ -1,0 +1,60 @@
+{
+  "fixtures": [
+    {
+      "id": "settings-init-command",
+      "prompt": "Use $claude-code-for-codex to map /init into Codex and explain how repo guidance files should be set up.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["guidance-file bootstrap"],
+      "notes": "Instruction-assembly boundary."
+    },
+    {
+      "id": "settings-hooks-command",
+      "prompt": "Use $claude-code-for-codex to map /hooks into Codex and explain the local automation config path.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Local config inspection"],
+      "notes": "Hooks should stay file-backed, not UI-backed."
+    },
+    {
+      "id": "settings-memory-command",
+      "prompt": "Use $claude-code-for-codex to map /memory into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Workspace guidance files"],
+      "notes": "Memory should not be over-promoted to direct parity."
+    },
+    {
+      "id": "settings-config-command",
+      "prompt": "Use $claude-code-for-codex to map /config into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["File edits and environment explanation"],
+      "notes": "Config stays approximate because Codex lacks a unified settings command."
+    },
+    {
+      "id": "settings-plan-workflow",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Enter plan mode, maintain a live plan, then execute' into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Planning workflow plus plan docs"],
+      "notes": "Plans are explicit continuity artifacts."
+    },
+    {
+      "id": "settings-resume-command",
+      "prompt": "Use $claude-code-for-codex to explain /resume in Codex terms, with workspace files and plans.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Existing thread plus local artifacts"],
+      "notes": "Resume stays reconstruction-based."
+    },
+    {
+      "id": "settings-compact-command",
+      "prompt": "Use $claude-code-for-codex to map /compact into Codex with a checkpoint summary.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Manual summarization"],
+      "notes": "Compaction remains a summary-based approximation."
+    },
+    {
+      "id": "settings-sandbox-command",
+      "prompt": "Use $claude-code-for-codex to map /sandbox into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["host environment"],
+      "notes": "Host-owned runtime control."
+    }
+  ]
+}

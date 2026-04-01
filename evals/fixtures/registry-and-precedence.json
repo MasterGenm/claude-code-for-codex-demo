@@ -1,0 +1,46 @@
+{
+  "fixtures": [
+    {
+      "id": "registry-skills-project-vs-user",
+      "prompt": "Use $claude-code-for-codex to map /skills into Codex, including project versus user skill roots and which definition wins if names collide.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Codex skill system"],
+      "notes": "Skill listing should stay direct while allowing deeper registry explanation."
+    },
+    {
+      "id": "registry-skills-legacy-commands",
+      "prompt": "Use $claude-code-for-codex to map /skills into Codex and explain how legacy commands directories still affect discovery.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Codex skill system"],
+      "notes": "Legacy compatibility roots should not force status changes."
+    },
+    {
+      "id": "registry-agents-shadowing",
+      "prompt": "Use $claude-code-for-codex to map /agents into Codex, including active versus shadowed agent definitions.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["delegated agents"],
+      "notes": "Agent registry semantics should stay approximate because Codex does not expose full Claude agent UX."
+    },
+    {
+      "id": "registry-init-artifact-choice",
+      "prompt": "Use $claude-code-for-codex to map /init into Codex and explain whether a new behavior should live in repo guidance, personal guidance, a skill, or an agent.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["guidance-file bootstrap"],
+      "notes": "Init remains approximate, but now with stronger artifact-placement reasoning."
+    },
+    {
+      "id": "registry-plugin-install-activation",
+      "prompt": "Use $claude-code-for-codex to map claude plugin install into Codex and explain why installation does not guarantee precedence over an existing skill.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Skill or plugin installation workflow"],
+      "notes": "Installation versus activation versus precedence should stay distinct."
+    },
+    {
+      "id": "registry-plugin-update-surface",
+      "prompt": "Use $claude-code-for-codex to map claude plugin update into Codex when multiple local artifact sources can affect the visible runtime surface.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Artifact-specific update workflow"],
+      "notes": "Update flow should still route through artifact-specific lifecycle handling."
+    }
+  ]
+}

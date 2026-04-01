@@ -1,0 +1,60 @@
+{
+  "fixtures": [
+    {
+      "id": "hooks-command-inspection",
+      "prompt": "Use $claude-code-for-codex to map /hooks into Codex and explain how I would inspect hook configuration.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Local config inspection"],
+      "notes": "Baseline /hooks mapping should remain file-based, not a fake UI parity claim."
+    },
+    {
+      "id": "hooks-permissions-mediation",
+      "prompt": "Use $claude-code-for-codex to map /permissions into Codex when PreToolUse hooks can still affect the decision.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Permission explanation plus local config inspection"],
+      "notes": "Permission requests with hook mediation should still route through the permissions boundary."
+    },
+    {
+      "id": "hooks-config-surface",
+      "prompt": "Use $claude-code-for-codex to map /config into Codex for hook-related runtime settings.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["File edits and environment explanation"],
+      "notes": "Config requests should stay file-level and avoid a fake unified settings UI."
+    },
+    {
+      "id": "hooks-plugin-command",
+      "prompt": "Use $claude-code-for-codex to map /plugin into Codex when the plugin changes runtime hooks.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Codex skills or plugins where available"],
+      "notes": "Plugin questions should preserve the runtime-extension boundary."
+    },
+    {
+      "id": "hooks-plugin-install-cli",
+      "prompt": "Use $claude-code-for-codex to map claude plugin install into Codex when I really want reusable runtime behavior with hooks.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Skill or plugin installation workflow"],
+      "notes": "Install flow should still distinguish skill versus plugin intent."
+    },
+    {
+      "id": "hooks-plugin-update-cli",
+      "prompt": "Use $claude-code-for-codex to map claude plugin update into Codex when hook behavior changed after an update.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Artifact-specific update workflow"],
+      "notes": "Update flow should not collapse into a generic marketplace refresh."
+    },
+    {
+      "id": "hooks-mcp-admin-cli",
+      "prompt": "Use $claude-code-for-codex to map claude mcp add into Codex when MCP tool output may also be hook-mediated.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "MCP admin should stay separate from runtime MCP behavior."
+    },
+    {
+      "id": "hooks-reload-plugins-command",
+      "prompt": "Use $claude-code-for-codex to map /reload-plugins into Codex after changing a plugin that contributes hooks.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["manual refresh or re-read"],
+      "notes": "Reload should stay approximate because there is no universal session-plugin reload surface."
+    }
+  ]
+}

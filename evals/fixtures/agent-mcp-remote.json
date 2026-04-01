@@ -1,0 +1,74 @@
+{
+  "fixtures": [
+    {
+      "id": "agent-fork-command",
+      "prompt": "Use $claude-code-for-codex to map /fork into Codex and explain subagent isolation.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Delegated agent workflow"],
+      "notes": "Delegation should remain explicit and bounded."
+    },
+    {
+      "id": "agent-agents-command",
+      "prompt": "Use $claude-code-for-codex to map /agents into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["delegated agents"],
+      "notes": "No persistent agent manager parity."
+    },
+    {
+      "id": "agent-tasks-command",
+      "prompt": "Use $claude-code-for-codex to map /tasks into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Active task or process summary"],
+      "notes": "Task manager remains approximate."
+    },
+    {
+      "id": "agent-workflow-spawn",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Spawn subagents for parallel work' into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Delegated agents only when explicitly requested"],
+      "notes": "Workflow-level delegation boundary."
+    },
+    {
+      "id": "mcp-command",
+      "prompt": "Use $claude-code-for-codex to map /mcp into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin or usage workflow"],
+      "notes": "Use/admin split."
+    },
+    {
+      "id": "mcp-add-cli",
+      "prompt": "How do I do claude mcp add in Codex?",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "Hardest MCP admin path."
+    },
+    {
+      "id": "session-command",
+      "prompt": "Use $claude-code-for-codex to map /session into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["remote-only"],
+      "notes": "Remote pairing remains unavailable."
+    },
+    {
+      "id": "remote-control-cli",
+      "prompt": "Use $claude-code-for-codex to map claude remote-control into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["bridge product surface"],
+      "notes": "Bridge control plane should stay unavailable."
+    },
+    {
+      "id": "mobile-command",
+      "prompt": "Use $claude-code-for-codex to map /mobile into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["Mobile product surface"],
+      "notes": "Product-owned pairing surface."
+    },
+    {
+      "id": "conversation-branch-command",
+      "prompt": "Use $claude-code-for-codex to map /branch into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["conversation branch"],
+      "notes": "Boundary against accidental git-branch drift."
+    }
+  ]
+}

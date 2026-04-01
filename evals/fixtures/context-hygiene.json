@@ -1,0 +1,53 @@
+{
+  "fixtures": [
+    {
+      "id": "context-compact-preserve-recent",
+      "prompt": "Use $claude-code-for-codex to map /compact into Codex and explain that recent context is preserved while older context is summarized.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Manual summarization"],
+      "notes": "Compact should stay approximate while allowing a deeper continuity explanation."
+    },
+    {
+      "id": "context-resume-boundary-correctness",
+      "prompt": "Use $claude-code-for-codex to map /resume into Codex when compaction boundaries and restore state affect correctness.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Existing thread plus local artifacts"],
+      "notes": "Resume should still route through the existing command row."
+    },
+    {
+      "id": "context-rewind-checkpoint",
+      "prompt": "Use $claude-code-for-codex to map /rewind into Codex and explain it as restoring a prior checkpoint rather than true transcript rewind.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Explicit rollback of approach"],
+      "notes": "Rewind should remain a manual checkpoint restore."
+    },
+    {
+      "id": "context-usage-pressure",
+      "prompt": "Use $claude-code-for-codex to map /context into Codex and explain visible context pressure without pretending there is a Claude-style context UI.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Context budget summary"],
+      "notes": "Context visibility stays approximate."
+    },
+    {
+      "id": "context-export-checkpoint-workflow",
+      "prompt": "Use $claude-code-for-codex to map the Claude Code workflow \"Export a conversation, checkpoint a state, compact a long session\" into Codex after compaction.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Write summary docs or checkpoint files"],
+      "notes": "This should hit the export and checkpoint workflow row."
+    },
+    {
+      "id": "context-compact-overflow-recovery",
+      "prompt": "Use $claude-code-for-codex to explain /compact in Codex terms when the real issue is context pressure and recovery before surfacing prompt-too-long failures.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Manual summarization"],
+      "notes": "Overflow language should not change the mapped status."
+    },
+    {
+      "id": "context-resume-from-files-plans-git",
+      "prompt": "Use $claude-code-for-codex to map the workflow \"Resume a previous transcript-backed session\" into Codex by rebuilding from files, plans, and git state.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Rebuild context from files, plans, notes, and git state"],
+      "notes": "This targets the session resume workflow row rather than the slash-command row."
+    }
+  ]
+}

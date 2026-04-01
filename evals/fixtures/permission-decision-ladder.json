@@ -1,0 +1,66 @@
+[
+  {
+    "id": "perm-workflow-01",
+    "prompt": "Explain how to Switch permission modes or inspect permission prompts in Codex.",
+    "expected_status": "approximate",
+    "expected_mapping_contains": [
+      "current host approval model"
+    ],
+    "notes": "Workflow-level permission explanation should stay approximate."
+  },
+  {
+    "id": "perm-command-01",
+    "prompt": "Map /permissions into Codex and explain the approval surface.",
+    "expected_status": "approximate",
+    "expected_mapping_contains": [
+      "approval model",
+      "host-configured"
+    ],
+    "notes": "Permission command stays approximate because the host owns most of the policy surface."
+  },
+  {
+    "id": "perm-command-02",
+    "prompt": "How should I use /config when the real issue is permission defaults?",
+    "expected_status": "approximate",
+    "expected_mapping_contains": [
+      "Edit local config files"
+    ],
+    "notes": "Config changes should resolve through explicit file-level edits, not fake slash parity."
+  },
+  {
+    "id": "perm-command-03",
+    "prompt": "Can Codex do /sandbox the same way Claude Code does?",
+    "expected_status": "unavailable",
+    "expected_mapping_contains": [
+      "sandbox mode is controlled by the host environment"
+    ],
+    "notes": "Sandbox toggling must remain unavailable."
+  },
+  {
+    "id": "perm-command-04",
+    "prompt": "Use /hooks to inspect tool-event hook configuration that affects permission prompts.",
+    "expected_status": "approximate",
+    "expected_mapping_contains": [
+      "hook or automation config files"
+    ],
+    "notes": "Hooks are inspectable, but not through a universal Codex hook UI."
+  },
+  {
+    "id": "perm-command-05",
+    "prompt": "Run claude doctor logic mentally for a broken permission setup.",
+    "expected_status": "approximate",
+    "expected_mapping_contains": [
+      "Local diagnostics"
+    ],
+    "notes": "Doctor stays approximate and local."
+  },
+  {
+    "id": "perm-command-06",
+    "prompt": "Before changing permissions, use /env to inspect the current environment.",
+    "expected_status": "direct",
+    "expected_mapping_contains": [
+      "Shell environment inspection"
+    ],
+    "notes": "Environment inspection is a direct local workflow that often precedes permission diagnosis."
+  }
+]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Code For Codex"
+  short_description: "Map Claude Code workflows into Codex with explicit boundaries"
+  default_prompt: "Use $claude-code-for-codex to map a Claude Code command or workflow into a Codex-native procedure, state the boundary, and ask for confirmation before execution."

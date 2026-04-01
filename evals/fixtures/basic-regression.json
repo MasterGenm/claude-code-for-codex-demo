@@ -1,0 +1,130 @@
+{
+  "fixtures": [
+    {
+      "id": "direct-help-command",
+      "prompt": "Use $claude-code-for-codex to map /help into Codex.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["local skill and tool awareness"],
+      "notes": "Baseline direct slash command."
+    },
+    {
+      "id": "direct-skills-command",
+      "prompt": "Use $claude-code-for-codex to map /skills into Codex.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Codex skill system"],
+      "notes": "Representative direct skill-system mapping."
+    },
+    {
+      "id": "direct-env-command",
+      "prompt": "Use $claude-code-for-codex to map /env into Codex.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Shell environment inspection"],
+      "notes": "Boundary probe because /env is easy to over-downgrade."
+    },
+    {
+      "id": "direct-review-workflow",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Local review or PR review' into Codex.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Codex review mode"],
+      "notes": "Workflow-level direct mapping."
+    },
+    {
+      "id": "direct-branch-inspection-workflow",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Branch inspection and switching' into Codex.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Git shell workflow"],
+      "notes": "Separates git-branch workflow from conversation branch."
+    },
+    {
+      "id": "approx-review-command",
+      "prompt": "Use $claude-code-for-codex to map /review, then ask whether to execute the review in Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["PR review workflow"],
+      "notes": "Canary for command-vs-workflow review boundary."
+    },
+    {
+      "id": "approx-doctor-command",
+      "prompt": "Use $claude-code-for-codex to map /doctor into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Local health checks"],
+      "notes": "Canary for /doctor status drift."
+    },
+    {
+      "id": "approx-plan-workflow",
+      "prompt": "Use $claude-code-for-codex to map Claude Code workflow 'Enter plan mode, maintain a live plan, then execute' into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Planning workflow plus plan docs"],
+      "notes": "Core workflow mapping example."
+    },
+    {
+      "id": "approx-resume-command",
+      "prompt": "Use $claude-code-for-codex to explain /resume in Codex terms.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Existing thread plus local artifacts"],
+      "notes": "Classic transcript-vs-workspace reconstruction boundary."
+    },
+    {
+      "id": "approx-branch-command",
+      "prompt": "Use $claude-code-for-codex to map /branch into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["checkpointed fork workflow"],
+      "notes": "Must preserve conversation-branch semantics, not drift into git advice."
+    },
+    {
+      "id": "approx-mcp-add-cli",
+      "prompt": "How do I do claude mcp add in Codex?",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["MCP admin decision tree"],
+      "notes": "Hardest integration path example."
+    },
+    {
+      "id": "approx-plugin-install-cli",
+      "prompt": "Use $claude-code-for-codex to map claude plugin install for a reusable capability in Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Skill or plugin installation workflow"],
+      "notes": "Approximate strategy should prefer skills over fake marketplace parity."
+    },
+    {
+      "id": "approx-fork-command",
+      "prompt": "Use $claude-code-for-codex to map /fork into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Delegated agent workflow"],
+      "notes": "Agent workflow approximation."
+    },
+    {
+      "id": "unavailable-sandbox-command",
+      "prompt": "Use $claude-code-for-codex to map /sandbox into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["host environment"],
+      "notes": "Host-owned control surface."
+    },
+    {
+      "id": "unavailable-rc-alias-cli",
+      "prompt": "How do I do claude rc in Codex?",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["bridge product surface"],
+      "notes": "Alias normalization to claude remote-control."
+    },
+    {
+      "id": "unavailable-remote-alias-command",
+      "prompt": "Use $claude-code-for-codex to map /remote into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["remote-only"],
+      "notes": "Alias normalization to /session plus visibility note."
+    },
+    {
+      "id": "unavailable-voice-command",
+      "prompt": "Use $claude-code-for-codex to map /voice into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["Voice I/O"],
+      "notes": "Clearly unavailable product surface."
+    },
+    {
+      "id": "unavailable-auth-login-cli",
+      "prompt": "Use $claude-code-for-codex to map claude auth login into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["Auth flow is host-managed"],
+      "notes": "CLI auth boundary example."
+    }
+  ]
+}

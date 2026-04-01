@@ -1,0 +1,53 @@
+{
+  "fixtures": [
+    {
+      "id": "repo-skills-command",
+      "prompt": "Use $claude-code-for-codex to map /skills into Codex, including where repo-defined skills come from.",
+      "expected_status": "direct",
+      "expected_mapping_contains": ["Codex skill system"],
+      "notes": "Repo operating system lens for skills discovery."
+    },
+    {
+      "id": "repo-agents-command",
+      "prompt": "Use $claude-code-for-codex to map /agents into Codex and explain available delegation roles.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["delegated agents"],
+      "notes": "Agents should stay approximate while still acknowledging definition roots."
+    },
+    {
+      "id": "repo-init-command",
+      "prompt": "Use $claude-code-for-codex to map /init into Codex and explain where repo guidance should live.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["guidance-file bootstrap"],
+      "notes": "Repo operating system artifact-choice prompt."
+    },
+    {
+      "id": "repo-plugin-command",
+      "prompt": "Use $claude-code-for-codex to map /plugin into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Codex skills or plugins where available"],
+      "notes": "Plugin control-plane boundary."
+    },
+    {
+      "id": "repo-plugin-install-cli",
+      "prompt": "Use $claude-code-for-codex to map claude plugin install into Codex terms.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Skill or plugin installation workflow"],
+      "notes": "Must avoid fake marketplace parity."
+    },
+    {
+      "id": "repo-plugin-update-cli",
+      "prompt": "Use $claude-code-for-codex to map claude plugin update into Codex.",
+      "expected_status": "approximate",
+      "expected_mapping_contains": ["Artifact-specific update workflow"],
+      "notes": "Extension lifecycle should not collapse into one generic answer."
+    },
+    {
+      "id": "repo-remote-control-cli",
+      "prompt": "Use $claude-code-for-codex to map claude remote-control into Codex.",
+      "expected_status": "unavailable",
+      "expected_mapping_contains": ["bridge product surface"],
+      "notes": "Repo operating system does not make transport-plane parity appear."
+    }
+  ]
+}
