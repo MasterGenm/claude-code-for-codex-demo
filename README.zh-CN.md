@@ -110,7 +110,7 @@ claude-code-for-codex/
 
 这是一个**翻译层 Skill**——核心价值是系统化管理产品差异，而不是增加运行时能力。它和领域知识型 Skill（如 [rag-system-planner](https://github.com/MasterGenm/rag-system-planner-demo)）形成互补，展示了 Agent Skill 的另一种设计范式：跨产品语义兼容，而非领域知识结构化。
 
-## Internship Relevance
+## 体现设计能力相关
 
 | 能力维度 | 在项目中的体现 |
 | --- | --- |
