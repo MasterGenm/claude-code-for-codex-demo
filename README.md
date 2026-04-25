@@ -2,6 +2,8 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
+> 系统化处理 Claude Code 到 Codex 的命令和工作流迁移。不是一张对照表，而是一个带三态分类（direct / approximate / unavailable）、执行策略、回归测试和上游漂移检测的兼容层 Agent Skill。
+
 Translate Claude Code commands and workflows into Codex-native procedures without pretending the two products are the same.
 
 This repository packages a Codex skill that:
@@ -41,22 +43,22 @@ The repository root is also the installable Codex skill directory. Install the w
 
 ```text
 claude-code-for-codex/
-+-- README.md
-+-- .gitignore
-+-- SKILL.md
-+-- agents/
-+-- evals/
-+-- references/
-+-- scripts/
-`-- examples/
-    +-- with-vs-without-skill.md
-    +-- with-vs-without-skill.zh-CN.md
-    `-- experiments/
-        +-- skill-comparison-experiment.md
-        `-- skill-comparison-experiment.zh-CN.md
++-- README.md / README.zh-CN.md
++-- SKILL.md                          # Skill entry: 18-step decision flow
++-- agents/openai.yaml                # Codex agent interface
++-- references/                       # 19 mechanism-level docs (3000+ lines)
+|   +-- command-mapping.md            # 100+ command mappings (direct/approximate/unavailable)
+|   +-- workflow-mapping.md           # workflow-level migration rules
+|   +-- capability-boundaries.md      # product difference matrix
+|   +-- execution-policy.md           # map-first, confirm-before-execute rules
+|   `-- ... (14 more mechanism references with upstream source anchors)
++-- evals/                            # 9 regression fixture suites (500+ test cases)
++-- scripts/                          # 4 maintenance tools incl. upstream drift detection
+|   +-- run_skill_evals.py            # regression runner
+|   +-- check_mapping_consistency.py  # upstream drift detector
+|   `-- ...
+`-- examples/                         # with-vs-without comparison + experiment records
 ```
-
-
 
 ## What The Skill Does
 
@@ -94,14 +96,45 @@ This skill does not:
 
 If a capability is not truly available in Codex, the skill should say `unavailable`.
 
+## Skill Design
+
+This project is not a cheatsheet or a blog post. It is a structured translation-layer Agent Skill with explicit design decisions:
+
+| Design aspect | Implementation |
+| --- | --- |
+| **Decision framework** | Three-status classification (`direct` / `approximate` / `unavailable`) with per-status execution rules |
+| **Execution governance** | Map-first, confirm-before-execute policy enforced through SKILL.md output rules |
+| **Standardized output** | Every response follows Status → Mapping → Boundary → Execution path |
+| **Regression testing** | 9 fixture suites (500+ cases) covering basic mappings through mechanism-level boundaries |
+| **Maintainability** | Upstream drift detection scripts + command registry extraction from Claude Code source |
+| **Knowledge depth** | 19 reference documents with source-code anchors, not surface-level summaries |
+
+This is a **translation-layer Skill** — its core value is systematically managing product differences, not adding runtime capabilities. It complements domain-expertise Skills (such as [rag-system-planner](https://github.com/MasterGenm/rag-system-planner-demo)) by demonstrating a different Agent Skill paradigm: cross-product semantic compatibility rather than domain knowledge structuring.
+
+## Internship Relevance
+
+| Capability | Demonstrated in this project |
+| --- | --- |
+| Systematic product analysis | 100+ commands mapped with three-status taxonomy; every `approximate` explains what is lost |
+| Agent Skill design methodology | Structured execution flow, output contracts, triggering conditions — not a prompt but a workflow asset |
+| Engineering rigor for knowledge assets | Regression framework, upstream drift detection, automated consistency checks |
+| Cross-product migration thinking | Explicit boundary management instead of vague "similar workaround" answers |
+| Source-level technical depth | 19 reference documents anchored to upstream source code, not surface-level documentation |
+
+### Not yet done
+
+- No behavior-level evaluation (current evals are static regression, not model-output judges)
+- No CI automation (scripts exist but are run manually)
+- Narrow scope: only Claude Code → Codex, not a general cross-product migration framework
+
 ## Release Scope
 
 This public release includes:
-- one installable Codex skill rooted at [`SKILL.md`](SKILL.md)
-- command and workflow mappings for Claude Code slash commands and CLI flows
-- mechanism-level references for the hardest Claude Code runtime concepts
-- maintenance scripts for upstream drift detection
-- a small regression framework with fixture packs under [`evals/`](evals)
+- one installable Codex skill with an 18-step decision flow ([`SKILL.md`](SKILL.md))
+- **100+ command and workflow mappings**, each classified as `direct`, `approximate`, or `unavailable`
+- **19 mechanism-level reference documents** (3000+ lines), with upstream source anchors
+- 4 maintenance scripts including automated upstream drift detection
+- **9 regression fixture suites** (500+ test cases) under [`evals/`](evals)
 
 This release does **not** claim:
 - full Claude Code parity
@@ -160,3 +193,12 @@ It should not trigger by default for:
 - ordinary coding tasks
 - normal debugging or testing
 - standard git operations with no Claude Code semantic ambiguity
+
+## Limitations
+
+| Current limitation | Possible direction |
+| --- | --- |
+| Static regression only, no behavior-level eval | Add judge-based eval for model output quality |
+| Manual script execution, no CI | Add GitHub Action for drift check on schedule |
+| Only covers Claude Code → Codex direction | Generalize to a cross-product Skill migration framework |
+| Single upstream snapshot, no continuous tracking | Automate periodic upstream extraction |

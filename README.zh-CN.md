@@ -41,20 +41,21 @@ Claude Code 和 Codex 有重合，但不是一回事：
 
 ```text
 claude-code-for-codex/
-+-- README.md
-+-- README.zh-CN.md
-+-- .gitignore
-+-- SKILL.md
-+-- agents/
-+-- evals/
-+-- references/
-+-- scripts/
-`-- examples/
-    +-- with-vs-without-skill.md
-    +-- with-vs-without-skill.zh-CN.md
-    `-- experiments/
-        +-- skill-comparison-experiment.md
-        `-- skill-comparison-experiment.zh-CN.md
++-- README.md / README.zh-CN.md
++-- SKILL.md                          # Skill 入口：18 步决策流程
++-- agents/openai.yaml                # Codex agent 接口定义
++-- references/                       # 19 篇机制级文档（3000+ 行）
+|   +-- command-mapping.md            # 100+ 条命令映射（direct/approximate/unavailable）
+|   +-- workflow-mapping.md           # 工作流级迁移规则
+|   +-- capability-boundaries.md      # 产品差异矩阵
+|   +-- execution-policy.md           # 先映射、再确认、再执行的规则
+|   `-- ...（另有 14 篇带上游源码锚点的机制参考）
++-- evals/                            # 9 套回归测试（500+ 测试用例）
++-- scripts/                          # 4 个维护工具，含上游漂移检测
+|   +-- run_skill_evals.py            # 回归测试执行器
+|   +-- check_mapping_consistency.py  # 上游漂移检测器
+|   `-- ...
+`-- examples/                         # 装/不装 skill 的对比 + 实验记录
 ```
 
 
@@ -94,14 +95,45 @@ claude-code-for-codex/
 
 如果某个能力在 Codex 里本来就不可靠或不存在，它就应该老老实实写 `unavailable`。
 
+## Skill 设计理念
+
+这个项目不是一张 cheatsheet，也不是一篇博客。它是一个结构化的翻译层 Agent Skill，有明确的设计决策：
+
+| 设计维度 | 实现方式 |
+| --- | --- |
+| **决策框架** | 三态分类（`direct` / `approximate` / `unavailable`），每种状态有对应的执行规则 |
+| **执行治理** | 先映射、再确认、再执行的策略，通过 SKILL.md 的输出规则强制执行 |
+| **标准化输出** | 每次响应都按 Status → Mapping → Boundary → Execution path 的顺序 |
+| **回归测试** | 9 套 fixture（500+ 用例），覆盖基础映射到机制级边界 |
+| **可维护性** | 上游漂移检测脚本 + 从 Claude Code 源码提取命令注册表 |
+| **知识深度** | 19 篇带源码锚点的参考文档，不是表面级别的摘要 |
+
+这是一个**翻译层 Skill**——核心价值是系统化管理产品差异，而不是增加运行时能力。它和领域知识型 Skill（如 [rag-system-planner](https://github.com/MasterGenm/rag-system-planner-demo)）形成互补，展示了 Agent Skill 的另一种设计范式：跨产品语义兼容，而非领域知识结构化。
+
+## Internship Relevance
+
+| 能力维度 | 在项目中的体现 |
+| --- | --- |
+| 系统化产品分析 | 100+ 条命令用三态分类映射；每个 `approximate` 都说明丢了什么 |
+| Agent Skill 设计方法论 | 结构化执行流程、输出合同、触发条件——不是一段 prompt，而是可复用的工作流资产 |
+| 知识资产的工程严谨性 | 回归测试框架、上游漂移检测、自动化一致性检查 |
+| 跨产品迁移思维 | 显式的边界管理，而不是模糊的"类似替代" |
+| 源码级技术深度 | 19 篇参考文档锚定上游源码，不是表面级文档 |
+
+### 还没做到的
+
+- 没有行为级评测（当前评测是静态回归，不是模型输出的 judge）
+- 没有 CI 自动化（脚本存在但需手动运行）
+- 范围窄：只覆盖 Claude Code → Codex 方向，不是通用的跨产品迁移框架
+
 ## 当前发布边界
 
 这次公开版包含：
-- 一个可安装的 Codex skill，入口是 [`SKILL.md`](SKILL.md)
-- Claude Code slash 命令和 CLI 流程的命令级、工作流级映射
-- 最难 Claude Code 运行机制的机制层参考
-- 检查上游漂移的维护脚本
-- 一套最小但能跑的回归评测框架，放在 [`evals/`](evals)
+- 一个可安装的 Codex skill，含 18 步决策流程（[`SKILL.md`](SKILL.md)）
+- **100+ 条命令和工作流映射**，每条标为 `direct`、`approximate` 或 `unavailable`
+- **19 篇机制级参考文档**（3000+ 行），带上游源码锚点
+- 4 个维护脚本，含自动化上游漂移检测
+- **9 套回归测试**（500+ 测试用例），放在 [`evals/`](evals)
 
 这次公开版**不承诺**：
 - 完整 Claude Code 等价
@@ -160,3 +192,12 @@ Use $claude-code-for-codex when a request mentions Claude Code commands, migrati
 - 普通编码任务
 - 普通调试和测试
 - 没有 Claude Code 语义歧义的常规 git 操作
+
+## 局限性与后续方向
+
+| 当前局限 | 后续可能方向 |
+| --- | --- |
+| 只有静态回归，没有行为级评测 | 加 judge 机制评估模型输出质量 |
+| 脚本手动执行，没有 CI | 加 GitHub Action 定期检查漂移 |
+| 只覆盖 Claude Code → Codex 方向 | 泛化为通用跨产品 Skill 迁移框架 |
+| 单次上游快照，没有持续追踪 | 自动化定期上游命令提取 |
