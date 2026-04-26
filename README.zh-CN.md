@@ -71,19 +71,19 @@ claude-code-for-codex/
 然后再询问你要不要继续执行。
 
 核心参考：
-- 命令映射：[`references/command-mapping.md`](references/command-mapping.md)
-- 工作流映射：[`references/workflow-mapping.md`](references/workflow-mapping.md)
-- 能力边界：[`references/capability-boundaries.md`](references/capability-boundaries.md)
-- 执行策略：[`references/execution-policy.md`](references/execution-policy.md)
-- 最难场景：[`references/integration-playbooks.md`](references/integration-playbooks.md)
+- 命令映射：[`references/command-mapping.zh-CN.md`](references/command-mapping.zh-CN.md)
+- 工作流映射：[`references/workflow-mapping.zh-CN.md`](references/workflow-mapping.zh-CN.md)
+- 能力边界：[`references/capability-boundaries.zh-CN.md`](references/capability-boundaries.zh-CN.md)
+- 执行策略：[`references/execution-policy.zh-CN.md`](references/execution-policy.zh-CN.md)
+- 最难场景：[`references/integration-playbooks.zh-CN.md`](references/integration-playbooks.zh-CN.md)
 
 机制层参考：
-- 架构总览：[`references/architecture-lenses.md`](references/architecture-lenses.md)
-- hooks 和工具治理：[`references/hook-and-tool-governance.md`](references/hook-and-tool-governance.md)
-- registry 和优先级：[`references/registry-and-precedence.md`](references/registry-and-precedence.md)
-- context hygiene：[`references/context-hygiene.md`](references/context-hygiene.md)
-- 权限决策梯子：[`references/permission-decision-ladder.md`](references/permission-decision-ladder.md)
-- MCP 运行时和入站控制面：[`references/mcp-runtime-and-inbound-control-plane.md`](references/mcp-runtime-and-inbound-control-plane.md)
+- 架构总览：[`references/architecture-lenses.zh-CN.md`](references/architecture-lenses.zh-CN.md)
+- hooks 和工具治理：[`references/hook-and-tool-governance.zh-CN.md`](references/hook-and-tool-governance.zh-CN.md)
+- registry 和优先级：[`references/registry-and-precedence.zh-CN.md`](references/registry-and-precedence.zh-CN.md)
+- context hygiene：[`references/context-hygiene.zh-CN.md`](references/context-hygiene.zh-CN.md)
+- 权限决策梯子：[`references/permission-decision-ladder.zh-CN.md`](references/permission-decision-ladder.zh-CN.md)
+- MCP 运行时和入站控制面：[`references/mcp-runtime-and-inbound-control-plane.zh-CN.md`](references/mcp-runtime-and-inbound-control-plane.zh-CN.md)
 
 ## 这个 skill 不会做什么
 
